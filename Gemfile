@@ -45,6 +45,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0'
   gem 'rails-controller-testing'
   gem 'rb-readline'
+  gem 'shoulda'
 end
 
 group :development do
