@@ -46,6 +46,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rb-readline'
   gem 'shoulda'
+  gem "shoulda-matchers", require: false
 end
 
 group :development do
