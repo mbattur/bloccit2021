@@ -21,7 +21,7 @@ topics = Topic.all
 
 50.times do
   Post.create!(
-    user:   users.sample,
+    user: users.sample,
     topic: topics.sample,
     title: RandomData.random_sentence,
     body: RandomData.random_paragraph
@@ -37,11 +37,20 @@ posts = Post.all
   )
 end
 
-user = User.first
- user.update(
-   email: 'test@test.com', # replace this with your personal email
-   password: 'password'
- )
+# Create an admin user
+admin = User.create!(
+  name: 'Admin User',
+  email: 'admin@example.com',
+  password: 'helloworld',
+  role: 'admin'
+)
+
+# Create a member
+member = User.create!(
+  name: 'Member User',
+  email: 'member@example.com',
+  password: 'helloworld'
+)
 
 puts 'Seed finished'
 puts "#{User.count} users created"
