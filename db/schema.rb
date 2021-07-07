@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_16_105958) do
+ActiveRecord::Schema.define(version: 2021_07_07_110140) do
 
   create_table "answers", force: :cascade do |t|
     t.text "body"
@@ -28,6 +28,22 @@ ActiveRecord::Schema.define(version: 2021_06_16_105958) do
     t.integer "user_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "labelings", force: :cascade do |t|
+    t.integer "label_id"
+    t.string "labelable_type"
+    t.integer "labelable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["label_id"], name: "index_labelings_on_label_id"
+    t.index ["labelable_type", "labelable_id"], name: "index_labelings_on_labelable"
+  end
+
+  create_table "labels", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "posts", force: :cascade do |t|
@@ -69,4 +85,5 @@ ActiveRecord::Schema.define(version: 2021_06_16_105958) do
   add_foreign_key "answers", "questions"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "labelings", "labels"
 end
